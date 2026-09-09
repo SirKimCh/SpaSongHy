@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Song Hỷ">
+  <!-- Placeholder — thay bằng logo gốc (huy hiệu tròn 2 dấu chân) khi có file. design-system §C5 -->
+  <rect width="32" height="32" rx="8" fill="#12626e"/>
+  <ellipse cx="13" cy="16" rx="5.5" ry="6.5" fill="#d9ccec"/>
+  <ellipse cx="19" cy="17" rx="5.5" ry="6.5" fill="#f6cbd8"/>
+</svg>

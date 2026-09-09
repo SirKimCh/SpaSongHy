@@ -1,0 +1,71 @@
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0 0;
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.thumb {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.body p {
+  margin: 0;
+}
+.tag {
+  align-self: flex-start;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-0);
+  background: var(--pair-baby);
+}
+.tag[data-for='mẹ'] {
+  background: var(--pair-mom);
+}
+.dur {
+  color: var(--text-muted);
+  font-size: var(--fs-0);
+}
+.commit {
+  font-size: var(--fs-0);
+  color: var(--brand-strong);
+}
+.priceLink {
+  margin-top: var(--space-2);
+  font-weight: 600;
+}
+.note {
+  margin-top: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--fs-0);
+  max-width: var(--measure);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

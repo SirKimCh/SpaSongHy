@@ -1,0 +1,30 @@
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+.media {
+  margin: 0;
+  width: 100%;
+}
+.media :global(img) {
+  width: 100%;
+  height: auto;
+  border: 6px solid var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+.grid p {
+  max-width: var(--measure);
+}
+.lead {
+  font-size: var(--fs-2);
+  color: var(--text-muted);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}

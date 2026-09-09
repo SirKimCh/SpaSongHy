@@ -1,0 +1,307 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   DESIGN TOKENS — nguồn sự thật. Mirror người-đọc: docs/design-system.md §C.
+   Tầng: primitive -> semantic. Component chỉ dùng biến semantic (--bg, --brand…).
+   CẤM dùng hex thô trong component.
+   Font: --font-fraunces / --font-bvp do next/font (src/app/layout.tsx) cấp.
+   ========================================================================== */
+
+:root {
+  /* ---- C1. PRIMITIVE — MÀU (đối chiếu design-system.md §A/§B) ---- */
+  --c-teal-700: #0f5561; /* brand đậm · từ OG-teal (A1.4) */
+  --c-teal-600: #12626e; /* brand chính (AA nền sáng) */
+  --c-teal-500: #1f6f7a; /* teal · hover */
+  --c-teal-50: #e8f2f3;
+  --c-yellow-500: #eab308; /* accent · hiện đại hoá từ OG-yellow (A1.3) */
+  --c-yellow-300: #f6c445; /* vàng doodle nguyên bản — chỉ cho hình */
+  --c-lavender-200: #d9ccec; /* Song Hỷ pair "mẹ" · OG-periwinkle (A1.2) */
+  --c-pink-200: #f6cbd8; /* Song Hỷ pair "bé" · OG-pink (A1.2) */
+  --c-blue-100: #e4eef4; /* nền section xen kẽ · OG-sky (A1.1) */
+  --c-blue-50: #f1f6f9;
+  --c-sage-200: #cdd8c6; /* muted / viền mềm · OG-sage (A1.5) */
+  --c-cream-50: #fbf7f0; /* nền trang · OG-cream */
+  --c-ink-900: #1d2321; /* chữ chính (không #000) */
+  --c-ink-600: #4a5652; /* chữ phụ (4.5:1 trên cream-50) */
+  --c-white: #ffffff;
+  --c-danger: #c2410c; /* đất nung */
+
+  /* ---- C2. SEMANTIC ---- */
+  --bg: var(--c-cream-50);
+  --bg-alt: var(--c-blue-100);
+  --surface: var(--c-white);
+  --text: var(--c-ink-900);
+  --text-muted: var(--c-ink-600);
+  --brand: var(--c-teal-600);
+  --brand-strong: var(--c-teal-700);
+  --brand-hover: var(--c-teal-500);
+  --brand-contrast: var(--c-white);
+  --accent: var(--c-yellow-500);
+  --accent-graphic: var(--c-yellow-300);
+  --pair-mom: var(--c-lavender-200);
+  --pair-baby: var(--c-pink-200);
+  --muted: var(--c-sage-200);
+  --border: #dfe6e0;
+  --ring: var(--c-teal-500);
+  --danger: var(--c-danger);
+
+  /* ---- C3. TYPOGRAPHY ---- */
+  --font-display: var(--font-fraunces), 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-bvp), system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --fs-0: 0.875rem;
+  --fs-1: 1rem;
+  --fs-2: 1.125rem;
+  --fs-3: 1.375rem;
+  --fs-4: 1.75rem;
+  --fs-5: 2.375rem;
+  --fs-6: clamp(2.75rem, 6vw, 3.75rem);
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-body: 1.65;
+  --measure: 66ch;
+  --measure-h1: 24ch;
+  --tracking-h1: -0.01em;
+
+  /* ---- C4. SPACING / RADIUS / SHADOW / MOTION ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 40px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(29, 35, 33, 0.06);
+  --shadow-md: 0 6px 20px -6px rgba(15, 85, 97, 0.18);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1); /* xấp xỉ back.out(1.4) — design-system §B2 */
+  --dur-fast: 180ms;
+  --dur-base: 300ms;
+  --dur-slow: 450ms;
+
+  --container: 1120px;
+  --gutter: 24px;
+  --gutter-mobile: 20px;
+}
+
+/* Tailwind v4: map token vào theme để dùng qua utility (bg-brand, text-ink, …). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-ink: var(--text);
+  --color-ink-muted: var(--text-muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-accent: var(--accent);
+  --color-pair-mom: var(--pair-mom);
+  --color-pair-baby: var(--pair-baby);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-h1);
+  margin: 0 0 var(--space-4);
+}
+
+h3,
+h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--space-3);
+}
+
+h1 {
+  font-size: var(--fs-6);
+  max-width: var(--measure-h1);
+}
+h2 {
+  font-size: var(--fs-5);
+}
+h3 {
+  font-size: var(--fs-4);
+}
+h4 {
+  font-size: var(--fs-3);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+a {
+  color: var(--brand);
+  text-underline-offset: 0.15em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus — luôn hiện (a11y). */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================================
+   LAYOUT HELPERS
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter-mobile);
+}
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--gutter);
+  }
+}
+
+.section {
+  padding-block: var(--space-7);
+}
+@media (min-width: 1024px) {
+  .section {
+    padding-block: var(--space-8);
+  }
+}
+.section-alt {
+  background: var(--bg-alt);
+}
+.section-intro {
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: var(--space-4);
+  top: var(--space-4);
+  z-index: 100;
+  background: var(--surface);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+.btn-sm {
+  min-height: 40px;
+  padding-inline: var(--space-4);
+  font-size: var(--fs-0);
+}
+.btn-primary {
+  background: var(--brand);
+  color: var(--brand-contrast);
+  border: 1px solid var(--brand);
+}
+.btn-primary:hover {
+  background: var(--brand-hover);
+  border-color: var(--brand-hover);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+.btn-ghost:hover {
+  background: var(--c-teal-50);
+}
+.btn-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block: var(--space-4);
+}
+
+/* ============================================================================
+   MOTION — chỉ 1 chuỗi vào ở Hero (thuần CSS, xem Hero.module.css).
+   Các section khác: tĩnh (design-system §B2).
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

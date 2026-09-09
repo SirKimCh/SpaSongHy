@@ -1,0 +1,81 @@
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+.eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-2);
+  color: var(--brand);
+  margin-bottom: var(--space-2);
+}
+.lede {
+  font-size: var(--fs-2);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+.proof {
+  font-size: var(--fs-0);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+.mediaWrap {
+  width: 100%;
+}
+.media {
+  margin: 0;
+}
+.media :global(img) {
+  width: 100%;
+  height: auto;
+  border: 6px solid var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+/* Chuỗi vào khi tải trang — THUẦN CSS, chạy 1 lần, không JS.
+   Chỉ bật khi người dùng không tắt hiệu ứng; mặc định nội dung đã hiển thị đầy đủ. */
+@media (prefers-reduced-motion: no-preference) {
+  .copy > *,
+  .mediaWrap {
+    animation: heroIn 500ms var(--ease-out) both;
+  }
+  .copy > *:nth-child(1) {
+    animation-delay: 40ms;
+  }
+  .copy > *:nth-child(2) {
+    animation-delay: 120ms;
+  }
+  .copy > *:nth-child(3) {
+    animation-delay: 200ms;
+  }
+  .copy > *:nth-child(4) {
+    animation-delay: 280ms;
+  }
+  .copy > *:nth-child(5) {
+    animation-delay: 360ms;
+  }
+  .mediaWrap {
+    animation-delay: 160ms;
+    animation-timing-function: var(--ease-back);
+  }
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

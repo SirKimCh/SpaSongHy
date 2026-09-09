@@ -1,0 +1,32 @@
+.footer {
+  background: var(--brand);
+  color: var(--brand-contrast);
+  padding-block: var(--space-6);
+}
+.inner {
+  display: grid;
+  gap: var(--space-3);
+}
+.inner p {
+  margin: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.brand p {
+  font-family: var(--font-display);
+  font-size: var(--fs-2);
+}
+.mark {
+  border-radius: var(--radius-pill);
+  height: auto;
+}
+.footer a {
+  color: var(--brand-contrast);
+}
+.fine {
+  font-size: var(--fs-0);
+  opacity: 0.85;
+}
